@@ -10,4 +10,6 @@ public class Parecer {
 	private int id;
 	@ManyToOne
 	private Artigo artigo;
+	@ManyToOne
+	private Avaliador avaliador;
 }
