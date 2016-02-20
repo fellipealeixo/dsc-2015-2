@@ -12,7 +12,7 @@ import br.edu.ifrn.sistcc.entidades.Submissao;
 
 @Stateless
 public class SubmissaoDAOImp implements SubmissaoDAO {
-	@PersistenceContext(unitName="SisTCCs")
+	@PersistenceContext(unitName="sistcc")
 	private EntityManager em;
 
 	@SuppressWarnings("unchecked")

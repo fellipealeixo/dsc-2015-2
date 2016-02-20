@@ -9,16 +9,17 @@ import javax.persistence.ManyToMany;
 @Entity
 public class Docente extends Usuario {
 	private static final long serialVersionUID = -7675914358078958910L;
+	
+	@Basic(optional=false)
 	private String siape;
 	private String urlLattes;
-
+	@ManyToMany
 	private List<Evento> eventos;
 	
 	public Docente() {
 		super();
 	}
 	
-	@Basic(optional=false)
 	public String getSiape() {
 		return siape;
 	}
@@ -33,7 +34,6 @@ public class Docente extends Usuario {
 		this.urlLattes = urlLattes;
 	}
 	
-	@ManyToMany
 	public List<Evento> getEventos() {
 		return eventos;
 	}

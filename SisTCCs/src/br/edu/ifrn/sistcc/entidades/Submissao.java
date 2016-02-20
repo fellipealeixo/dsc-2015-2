@@ -37,41 +37,51 @@ import javax.persistence.TemporalType;
 @Entity
 public class Submissao implements Serializable {
 	private static final long serialVersionUID = -4186466624283828230L;
+	
+	@Id
+	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private int id;
 	private String titulo;
 	private String resumo;
 	private String urlArquivo;
+	@Temporal(TemporalType.TIMESTAMP)
 	private Calendar dataSubmissao;
+	@Enumerated(EnumType.ORDINAL)
 	private EstadoSubmissao estado;
 	private int paginas;
 	
+	@ManyToOne
 	private AutorPrincipal autor;
+	@ManyToOne
 	private Evento evento;
+	@OneToMany(mappedBy="submissao")
 	private List<Parecer> pareceres;
 	
 	public Submissao() {
 		super();
 	}
-	@Id
-	@GeneratedValue(strategy=GenerationType.IDENTITY)
+	
 	public int getId() {
 		return id;
 	}
 	public void setId(int id) {
 		this.id = id;
 	}
+	
 	public String getTitulo() {
 		return titulo;
 	}
 	public void setTitulo(String titulo) {
 		this.titulo = titulo;
 	}
+	
 	public String getResumo() {
 		return resumo;
 	}
 	public void setResumo(String resumo) {
 		this.resumo = resumo;
 	}
+	
 	public String getUrlArquivo() {
 		return urlArquivo;
 	}
@@ -79,7 +89,6 @@ public class Submissao implements Serializable {
 		this.urlArquivo = urlArquivo;
 	}
 	
-	@Temporal(TemporalType.TIMESTAMP)
 	public Calendar getDataSubmissao() {
 		return dataSubmissao;
 	}
@@ -87,7 +96,6 @@ public class Submissao implements Serializable {
 		this.dataSubmissao = dataSubmissao;
 	}
 	
-	@Enumerated(EnumType.ORDINAL)
 	public EstadoSubmissao getEstado() {
 		return estado;
 	}
@@ -95,7 +103,6 @@ public class Submissao implements Serializable {
 		this.estado = status;
 	}
 	
-	@ManyToOne
 	public AutorPrincipal getAutor() {
 		return autor;
 	}
@@ -103,7 +110,6 @@ public class Submissao implements Serializable {
 		this.autor = autor;
 	}
 	
-	@ManyToOne
 	public Evento getEvento() {
 		return evento;
 	}
@@ -111,7 +117,6 @@ public class Submissao implements Serializable {
 		this.evento = evento;
 	}
 	
-	@OneToMany(mappedBy="submissao")
 	public List<Parecer> getPareceres() {
 		return pareceres;
 	}
@@ -122,7 +127,6 @@ public class Submissao implements Serializable {
 	public int getPaginas() {
 		return paginas;
 	}
-	
 	public void setPaginas(int paginas) {
 		this.paginas = paginas;
 	}
