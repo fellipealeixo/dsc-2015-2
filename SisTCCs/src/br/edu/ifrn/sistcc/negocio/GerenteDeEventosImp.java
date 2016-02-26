@@ -5,7 +5,9 @@ import java.util.List;
 import javax.ejb.EJB;
 import javax.ejb.Stateless;
 
+import br.edu.ifrn.sistcc.daos.EventoDAO;
 import br.edu.ifrn.sistcc.daos.SubmissaoDAO;
+import br.edu.ifrn.sistcc.entidades.Evento;
 import br.edu.ifrn.sistcc.entidades.Submissao;
 import br.edu.ifrn.sistcc.excecoes.EventoInvalidoException;
 
@@ -13,6 +15,8 @@ import br.edu.ifrn.sistcc.excecoes.EventoInvalidoException;
 public class GerenteDeEventosImp implements GerenteDeEventos {
 	@EJB
 	private SubmissaoDAO submissaoDAO;
+	@EJB
+	private EventoDAO eventoDAO;
 
 	public GerenteDeEventosImp() {
 	}
@@ -23,6 +27,11 @@ public class GerenteDeEventosImp implements GerenteDeEventos {
 		
 		// Se o id for válido
 		return submissaoDAO.submissoesPorEvento(idEvento);
+	}
+
+	@Override
+	public List<Evento> getEventos() {
+		return eventoDAO.getAll();
 	}
 
 }

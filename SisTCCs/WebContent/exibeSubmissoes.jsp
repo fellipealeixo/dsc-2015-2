@@ -14,7 +14,7 @@
 	List<Submissao> lista = (List<Submissao>) session.getAttribute("lista");
 	for(Submissao s : lista) {
 %>
-	<li><%= s.getId() %>, <%= s.getTitulo() %></li>
+	<li><%= s.getId() %>, <%= s.getTitulo() %>, <%= s.getUrlArquivo() %></li>
 <%
 	}
 %>

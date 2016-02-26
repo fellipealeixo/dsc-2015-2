@@ -19,8 +19,6 @@ import br.edu.ifrn.sistcc.negocio.GerenteDeEventos;
 @WebServlet("/SubmissoesPorEvento")
 public class SubmissoesPorEvento extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-	@SuppressWarnings("unused")
-	private int idEvento;
 	@EJB
 	private GerenteDeEventos gerEventos;
 	
@@ -30,21 +28,16 @@ public class SubmissoesPorEvento extends HttpServlet {
 
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+		int idEvento = Integer.parseInt(req.getParameter("idEvento"));
 		List<Submissao> lista = new ArrayList<Submissao>();
 		try {
-			lista = gerEventos.submissoesPorEvento(1);
+			lista = gerEventos.submissoesPorEvento(idEvento);
 		} catch (EventoInvalidoException e) {
 			e.printStackTrace();
 		}
 		HttpSession sessao = req.getSession();
 		sessao.setAttribute("lista", lista);
 		resp.sendRedirect("/SisTCCs/exibeSubmissoes.jsp");
-	}
-
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// Recupera o valor do idEvento;
-		idEvento = Integer.parseInt(request.getParameter("idEvento"));
-		doGet(request, response);
 	}
 
 }
